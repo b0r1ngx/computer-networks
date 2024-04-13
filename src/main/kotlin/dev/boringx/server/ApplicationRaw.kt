@@ -10,7 +10,7 @@ private const val RESOURCES_PATH = "src/main/resources"
 
 fun main() {
     val serverSocket = ServerSocket(8080)
-    println("Application - Responding at http://${serverSocket.localSocketAddress}")
+    println("[INFO] Application - Responding at http://${serverSocket.localSocketAddress}")
     while (true) {
         val connectionSocket = serverSocket.accept()
         val output = connectionSocket.getOutputStream()
@@ -24,9 +24,11 @@ fun main() {
 
             output.write(OK_200.toByteArray())
             output.write(outputData)
+            println("[TRACE] Application found route.")
         } catch (e: Exception) {
             output.write(NOT_FOUND_404.toByteArray())
             output.write(FileNotFound.toByteArray())
+            println("[TRACE] Application not found route.")
         } finally {
             output.flush()
             output.close()
