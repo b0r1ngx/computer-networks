@@ -1,8 +1,8 @@
-package dev.boringx
+package dev.boringx.server
 
-import dev.boringx.resources.values.FileNotFound
-import dev.boringx.resources.values.NOT_FOUND_404
-import dev.boringx.resources.values.OK_200
+import dev.boringx.server.resources.values.FileNotFound
+import dev.boringx.server.resources.values.NOT_FOUND_404
+import dev.boringx.server.resources.values.OK_200
 import java.io.File
 import java.net.ServerSocket
 
@@ -21,7 +21,6 @@ fun main() {
             val requestedPathName = request.split(" ")[1]
             val file = File(RESOURCES_PATH + requestedPathName)
             val outputData = file.readBytes()
-            println("Hello")
 
             output.write(OK_200.toByteArray())
             output.write(outputData)
