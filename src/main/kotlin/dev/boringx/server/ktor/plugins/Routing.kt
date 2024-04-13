@@ -10,10 +10,8 @@ import io.ktor.server.routing.get
 
 fun Application.configureRouting() {
     routing {
-        get("/") {
-            call.respondText(helloString)
-        }
-        
+        get("/") { call.respondText(helloString) }
+
         staticResources("/", "/")
     }
 }
