@@ -10,14 +10,14 @@ private const val RESOURCES_PATH = "src/main/resources"
 
 fun main() {
     val serverSocket = ServerSocket(8080)
-
     while (true) {
         val connectionSocket = serverSocket.accept()
+        println("Application - Responding at http://${serverSocket.localSocketAddress}")
         val output = connectionSocket.getOutputStream()
 
         try {
             val input = connectionSocket.getInputStream().bufferedReader()
-            val request = input.readLine() // format ~: GET /index.html HTTP/1.1
+            val request = input.readLine() // format ~: "GET /index.html HTTP/1.1"
             val requestedPathName = request.split(" ")[1]
             val file = File(RESOURCES_PATH + requestedPathName)
             val outputData = file.readBytes()
