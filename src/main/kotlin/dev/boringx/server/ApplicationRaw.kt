@@ -10,9 +10,9 @@ private const val RESOURCES_PATH = "src/main/resources"
 
 fun main() {
     val serverSocket = ServerSocket(8080)
+    println("Application - Responding at http://${serverSocket.localSocketAddress}")
     while (true) {
         val connectionSocket = serverSocket.accept()
-        println("Application - Responding at http://${serverSocket.localSocketAddress}")
         val output = connectionSocket.getOutputStream()
 
         try {
