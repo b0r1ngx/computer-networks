@@ -2,6 +2,7 @@ package dev.boringx.server.resources.values
 
 const val helloString = "You are seeing it from other host in local network!"
 const val FileNotFound = "File Not Found"
-const val HTTP_V = "HTTP/1.1 "
-const val OK_200 = HTTP_V + "200 OK"
-const val NOT_FOUND_404 = HTTP_V + "404 Not Found"
+const val HEADER_START = "HTTP/1.1 "
+const val HEADER_END = "\r\n\r\n"
+const val OK_200 = HEADER_START + "200 OK" + HEADER_END
+const val NOT_FOUND_404 = HEADER_START + "404 Not Found" + HEADER_END
