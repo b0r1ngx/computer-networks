@@ -1,4 +1,4 @@
-package dev.boringx.ktor.plugins
+package dev.boringx.server.ktor.plugins
 
 import dev.boringx.resources.values.helloString
 import io.ktor.server.application.Application

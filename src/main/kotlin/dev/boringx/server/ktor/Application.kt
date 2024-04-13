@@ -1,6 +1,6 @@
-package dev.boringx.ktor
+package dev.boringx.server.ktor
 
-import dev.boringx.ktor.plugins.configureRouting
+import dev.boringx.server.ktor.plugins.configureRouting
 import io.ktor.server.application.Application
 import io.ktor.server.netty.EngineMain
 
