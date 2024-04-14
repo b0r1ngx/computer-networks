@@ -1,6 +1,6 @@
 ## Proxy Server
 
-![img.png](img.png)
+![Proxy Server Architecture](architecture.png)
 
 ### Run
 
