@@ -3,23 +3,14 @@ package dev.boringx.proxy
 import RESOURCES_PATH
 import SERVER_PORT
 import dev.boringx.server.resources.values.OK_200
-import java.io.InputStream
-import java.io.InputStreamReader
-import java.io.OutputStreamWriter
-import java.io.BufferedReader
 import java.io.File
-import java.io.FileOutputStream
-import java.io.OutputStream
-import java.net.InetAddress
-import java.net.InetSocketAddress
+import java.io.InputStream
 import java.net.ServerSocket
-import java.net.Socket
 import java.net.URL
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
-import kotlin.io.path.createDirectories
 import kotlin.io.path.Path
-import kotlin.io.path.createDirectory
+import kotlin.io.path.createDirectories
 import kotlin.io.path.pathString
 
 private const val CACHE = "$RESOURCES_PATH/cache/"
@@ -43,69 +34,34 @@ fun main() {
             val file = File(proxyPath.pathString)
             if (file.exists()) {
                 println("Cache hit")
-                val outputData = file.readBytes()
+                val responseData = file.readBytes()
 
                 output.write(OK_200.toByteArray())
-                output.write(outputData)
-                output.flush()
+                output.write(responseData)
                 println("[TRACE] Application found route.")
             } else {
                 println("Cache miss")
-                val socket = Socket()
+                val url = URL("https://$requestedPath")
 
-                val prepareUrl = "https://$requestedPath"
-                val url = URL(prepareUrl)
-                val hostName = url.host
-                println(hostName)
-                try {
-                    val hostIpAddress = InetAddress.getByName(hostName)
-                    println(hostIpAddress.hostAddress)
-                    // if http: 80, if https: 443
-                    val socketAddress = InetSocketAddress(hostIpAddress, 443)
-                    socket.connect(socketAddress)
-
-//                    println("Creating a temporary file on this socket and request port 80 for the file that the client needs")
-//                    val fileObj = OutputStreamWriter(socket.getOutputStream())
-//                    fileObj.write("GET $prepareUrl HTTP/1.1\n\n")
-//                    println("fileObj: $fileObj")
-
-                    println("Read web-server response to buffer") // works so long
-                    proxyPath.parent.createDirectories()
-//                    val file = socket.getInputStream()
-//                    print(file.readAllBytes().toString())
-//                    file.toFile(proxyPath.pathString)
-
-                    // TODO: Use socket + connect + inputStream instead of encapsulated work at url.openStream()
-                    with(url.openStream()) {
-                        Files.copy(this, proxyPath, StandardCopyOption.REPLACE_EXISTING)
-                    }
-//                    val bufferedReader = BufferedReader(InputStreamReader())
-//                    val response = StringBuilder()
-//                    var line: String? = bufferedReader.readLine()
-//                    while (line != null) {
-//                        response.append(line)
-//                        line = bufferedReader.readLine()
-//                    }
-
-//                    println("Saves file on server")
-//                    val tmpFile = FileOutputStream()
-//                    tmpFile.write(response.toString().toByteArray())
-//                    tmpFile.flush()
-                    println("Successfully create cache entry on server")
-
-                    output.write(file.readBytes())
-                    output.flush()
-                    println("[TRACE] Application found route.")
-                } catch (e: Exception) {
-                    println("Exception: ${e.stackTraceToString()}")
-                } finally {
-                    socket.close()
-                    connectionSocket.close()
+                proxyPath.parent.createDirectories()
+                // TODO: Use socket + connect + inputStream instead of encapsulated work of url.openStream()
+                with(url.openStream()) {
+                    Files.copy(this, proxyPath, StandardCopyOption.REPLACE_EXISTING)
                 }
+                println("Successfully create cache entry on server")
+                val responseData = file.readBytes()
+
+                output.write(OK_200.toByteArray())
+                output.write(responseData)
+                println("[TRACE] Application found route.")
             }
             println()
         } catch (e: Exception) {
             println("Exception: ${e.stackTraceToString()}")
+        } finally {
+            output.flush()
+            output.close()
+            connectionSocket.close()
         }
     }
 }
