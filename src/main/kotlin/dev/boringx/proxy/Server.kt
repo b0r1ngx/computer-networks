@@ -5,7 +5,6 @@ import SERVER_PORT
 import dev.boringx.sendResponse200
 import dev.boringx.sendResponse404
 import java.io.File
-import java.io.InputStream
 import java.net.ServerSocket
 import java.net.URL
 import java.nio.file.Files
@@ -25,7 +24,7 @@ fun main() {
         try {
             val input = connectionSocket.inputStream.bufferedReader()
             val request = input.readLine()
-            println(request)
+            println("request: $request")
 
             // Извлекаем имя файла из сообщения
             val path = request.split(" ")[1].removePrefix("/")
@@ -58,10 +57,4 @@ fun main() {
             connectionSocket.close()
         }
     }
-}
-
-private fun InputStream.toFile(path: String): File {
-    val file = File(path)
-    file.outputStream().use { this.copyTo(it) }
-    return file
 }
