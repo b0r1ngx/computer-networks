@@ -29,7 +29,7 @@ fun main() {
         } catch (e: Exception) {
             output.write(NOT_FOUND_404.toByteArray())
             output.write(FileNotFound.toByteArray())
-            println("[TRACE] Application not found route.")
+            println("[TRACE] Application not found route. Exception: ${e.stackTraceToString()}")
         } finally {
             output.flush()
             output.close()
