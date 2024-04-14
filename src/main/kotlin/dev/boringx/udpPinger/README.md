@@ -80,3 +80,6 @@ Successfully response on request
 Packet lost
 Packet lost
 ```
+
+### Conclusion
+- In case that we test two variants of hosting server and client parts, we can say that ping is increasing when the distance and amount of network cards are increased between server and client connection - and we understand why this happens.
