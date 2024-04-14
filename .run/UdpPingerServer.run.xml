@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="UdpPingerServer" type="JetRunConfigurationType">
+    <option name="MAIN_CLASS_NAME" value="dev.boringx.udpPinger.ServerKt" />
+    <module name="dev.boringx.ktor-sample.main" />
+    <shortenClasspath name="NONE" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ServerAppRaw" type="JetRunConfigurationType">
+    <option name="MAIN_CLASS_NAME" value="dev.boringx.server.ApplicationRawKt" />
+    <module name="dev.boringx.ktor-sample.main" />
+    <shortenClasspath name="NONE" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
