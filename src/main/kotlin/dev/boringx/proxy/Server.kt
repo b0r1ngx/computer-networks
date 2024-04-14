@@ -8,7 +8,6 @@ import java.io.File
 import java.net.ServerSocket
 import java.net.URL
 import java.nio.file.Files
-import java.nio.file.StandardCopyOption
 import kotlin.io.path.Path
 import kotlin.io.path.createDirectories
 import kotlin.io.path.pathString
@@ -26,7 +25,6 @@ fun main() {
             val request = input.readLine()
             println("request: $request")
 
-            // Извлекаем имя файла из сообщения
             val requestedPath = request.split(" ")[1].removePrefix("/")
             val proxyPath = Path(CACHE_PATH + requestedPath)
             println("requestedPath: $requestedPath")
@@ -42,7 +40,7 @@ fun main() {
                 proxyPath.parent.createDirectories()
                 // TODO: Use socket + connect + inputStream instead of encapsulated work of url.openStream()
                 with(url.openStream()) {
-                    Files.copy(this, proxyPath, StandardCopyOption.REPLACE_EXISTING)
+                    Files.copy(this, proxyPath)
                 }
                 println("Successfully create cache entry on server")
                 output.sendResponse200(data = file.readBytes())
