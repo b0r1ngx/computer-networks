@@ -27,9 +27,8 @@ fun main() {
             println("request: $request")
 
             // Извлекаем имя файла из сообщения
-            val path = request.split(" ")[1].removePrefix("/")
-            val requestedPath = Path(path)
-            val proxyPath = Path(CACHE_PATH + path)
+            val requestedPath = request.split(" ")[1].removePrefix("/")
+            val proxyPath = Path(CACHE_PATH + requestedPath)
             println("requestedPath: $requestedPath")
 
             val file = File(proxyPath.pathString)
