@@ -2,7 +2,7 @@ package dev.boringx.server
 
 import RESOURCES_PATH
 import SERVER_PORT
-import dev.boringx.resources.values.OK_200
+import dev.boringx.sendResponse200
 import dev.boringx.sendResponse404
 import java.io.File
 import java.net.ServerSocket
@@ -19,11 +19,7 @@ fun main() {
             val request = input.readLine() // format ~: "GET /index.html HTTP/1.1"
             val requestedPathName = request.split(" ")[1]
             val file = File(RESOURCES_PATH + requestedPathName)
-            val outputData = file.readBytes()
-
-            output.write(OK_200.toByteArray())
-            output.write(outputData)
-            println("[TRACE] Application found route.")
+            output.sendResponse200(data = file.readBytes())
         } catch (exception: Exception) {
             output.sendResponse404(exception)
         } finally {

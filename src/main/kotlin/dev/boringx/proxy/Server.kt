@@ -2,7 +2,7 @@ package dev.boringx.proxy
 
 import RESOURCES_PATH
 import SERVER_PORT
-import dev.boringx.resources.values.OK_200
+import dev.boringx.sendResponse200
 import dev.boringx.sendResponse404
 import java.io.File
 import java.io.InputStream
@@ -35,11 +35,7 @@ fun main() {
             val file = File(proxyPath.pathString)
             if (file.exists()) {
                 println("Cache hit")
-                val responseData = file.readBytes()
-
-                output.write(OK_200.toByteArray())
-                output.write(responseData)
-                println("[TRACE] Application found route.")
+                output.sendResponse200(data = file.readBytes())
             } else {
                 println("Cache miss")
                 val url = URL("https://$requestedPath")
@@ -50,11 +46,7 @@ fun main() {
                     Files.copy(this, proxyPath, StandardCopyOption.REPLACE_EXISTING)
                 }
                 println("Successfully create cache entry on server")
-                val responseData = file.readBytes()
-
-                output.write(OK_200.toByteArray())
-                output.write(responseData)
-                println("[TRACE] Application found route.")
+                output.sendResponse200(data = file.readBytes())
             }
             println()
         } catch (exception: Exception) {
