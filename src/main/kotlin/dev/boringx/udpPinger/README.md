@@ -3,18 +3,21 @@
 ### Run
 
 To run the `Server`, execute the following command in a repository's root directory:
+
 ```
 
 ```
 
 To run the `Client`, execute the following command in a repository's root directory:
-```
 
 ```
 
+```
 
 ### Hosting on same machines
+
 #### Client log (client hosted on same machine than server is)
+
 ```
 Request timed out
 Response: PING 2 1713082348945
@@ -35,6 +38,7 @@ RTT: 0.001 seconds
 ```
 
 #### Server log
+
 ```
 Package loss
 Successfully response on request
@@ -49,7 +53,9 @@ Successfully response on request
 ```
 
 ### Hosting on different machines
+
 #### Client log
+
 ```
 Request timed out
 Request timed out
@@ -68,6 +74,7 @@ Request timed out
 ```
 
 #### Server log
+
 ```
 Packet lost
 Packet lost
@@ -82,5 +89,8 @@ Packet lost
 ```
 
 ### Conclusion
-- In case that we test two variants of hosting server and client parts, we can say that ping is increasing when the distance and amount of network cards are increased between server and client connection - and we understand why this happens.
+
+- In case that we test two variants of hosting server and client parts, we can say that ping is increasing when the
+  distance and amount of network cards are increased between server and client connection - and we understand why this
+  happens.
 - TODO!

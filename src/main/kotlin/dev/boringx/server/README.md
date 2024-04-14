@@ -10,7 +10,6 @@ To run the `webserver` in raw version, execute the following command in a reposi
 
 Navigate to [http://0.0.0.0:8080/](http://0.0.0.0:8080/) to see the output.
 
-
 ### Raw (non-dependency) version
 
 Server log
@@ -24,7 +23,6 @@ Server log
 // GET /index.html Request
 [TRACE] Application not found route.
 ```
-
 
 ### Ktor version
 
