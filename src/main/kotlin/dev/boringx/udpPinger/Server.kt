@@ -16,7 +16,7 @@ fun main() {
 
         // Simulate packet loss by randomly dropping packets (drop 4/10 of packets)
         if (Random.nextInt(0, 11) < 4) {
-            println("Package loss")
+            println("Packet lost")
             continue
         }
 
