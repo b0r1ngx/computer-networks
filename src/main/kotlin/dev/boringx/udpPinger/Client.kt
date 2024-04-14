@@ -1,5 +1,6 @@
 package dev.boringx.udpPinger
 
+import SERVER_PORT
 import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.InetAddress
@@ -12,7 +13,7 @@ fun main() {
     repeat(10) { sequence ->
         val message = "Ping ${sequence + 1} ${System.currentTimeMillis()}"
         val sendData = message.toByteArray()
-        val sendPacket = DatagramPacket(sendData, sendData.size, serverAddress, 8080)
+        val sendPacket = DatagramPacket(sendData, sendData.size, serverAddress, SERVER_PORT)
 
         val startTime = System.currentTimeMillis()
 

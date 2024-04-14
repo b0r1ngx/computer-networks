@@ -1,12 +1,13 @@
 package dev.boringx.udpPinger
 
+import SERVER_PORT
 import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.util.Locale
 import kotlin.random.Random
 
 fun main() {
-    val serverSocket = DatagramSocket(8080)
+    val serverSocket = DatagramSocket(SERVER_PORT)
     val receiveData = ByteArray(1024)
 
     while (true) {
