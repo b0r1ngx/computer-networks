@@ -1,6 +1,6 @@
 package dev.boringx.server.ktor.plugins
 
-import dev.boringx.server.resources.values.helloString
+import dev.boringx.resources.values.helloString
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
 import io.ktor.server.http.content.staticResources

@@ -2,9 +2,8 @@ package dev.boringx.proxy
 
 import RESOURCES_PATH
 import SERVER_PORT
-import dev.boringx.server.resources.values.FileNotFound
-import dev.boringx.server.resources.values.NOT_FOUND_404
-import dev.boringx.server.resources.values.OK_200
+import dev.boringx.resources.values.OK_200
+import dev.boringx.sendResponse404
 import java.io.File
 import java.io.InputStream
 import java.net.ServerSocket
@@ -58,10 +57,8 @@ fun main() {
                 println("[TRACE] Application found route.")
             }
             println()
-        } catch (e: Exception) {
-            output.write(NOT_FOUND_404.toByteArray())
-            output.write(FileNotFound.toByteArray())
-            println("[TRACE] Application not found route. Exception: ${e.stackTraceToString()}")
+        } catch (exception: Exception) {
+            output.sendResponse404(exception)
         } finally {
             output.flush()
             output.close()

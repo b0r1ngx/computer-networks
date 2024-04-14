@@ -1,4 +1,4 @@
-package dev.boringx.server.resources.values
+package dev.boringx.resources.values
 
 const val helloString = "You are seeing it from other host in local network!"
 const val FileNotFound = "File Not Found"
