@@ -14,7 +14,7 @@ import kotlin.io.path.Path
 import kotlin.io.path.createDirectories
 import kotlin.io.path.pathString
 
-private const val CACHE = "$RESOURCES_PATH/cache/"
+private const val CACHE_PATH = "$RESOURCES_PATH/cache/"
 
 fun main() {
     val serverSocket = ServerSocket(SERVER_PORT)
@@ -28,8 +28,9 @@ fun main() {
             println(request)
 
             // Извлекаем имя файла из сообщения
-            val requestedPath = Path(request.split(" ")[1].removePrefix("/"))
-            val proxyPath = Path(CACHE + request.split(" ")[1].removePrefix("/"))
+            val path = request.split(" ")[1].removePrefix("/")
+            val requestedPath = Path(path)
+            val proxyPath = Path(CACHE_PATH + path)
             println("requestedPath: $requestedPath")
 
             val file = File(proxyPath.pathString)
