@@ -9,7 +9,7 @@ import kotlin.random.Random
 fun main() {
     val serverSocket = DatagramSocket(SERVER_PORT)
     val receiveData = ByteArray(1024)
-
+    println("[INFO] Application - Responding at http://${serverSocket.localSocketAddress}")
     while (true) {
         val requestDatagramPacket = DatagramPacket(receiveData, receiveData.size)
         serverSocket.receive(requestDatagramPacket)
@@ -17,7 +17,7 @@ fun main() {
 
         // Simulate packet loss by randomly dropping packets (drop 4/10 of packets)
         if (Random.nextInt(0, 11) < 4) {
-            println("Packet lost")
+            println("[INFO] Packet lost")
             continue
         }
 
@@ -26,6 +26,6 @@ fun main() {
         val responseByteArray = message.uppercase(Locale.getDefault()).toByteArray()
         val sendPacket = DatagramPacket(responseByteArray, responseByteArray.size, address, port)
         serverSocket.send(sendPacket)
-        println("Successfully response on request")
+        println("[INFO] Successfully response on request")
     }
 }
