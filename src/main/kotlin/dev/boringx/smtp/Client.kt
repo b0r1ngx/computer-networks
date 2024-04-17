@@ -27,6 +27,7 @@ import javax.net.ssl.SSLSocket
     Sending Limits: ???
  */
 
+
 fun main() {
     googleRealisation()
 }
@@ -35,10 +36,10 @@ fun googleRealisation() {
     val serverAddress = "smtp.gmail.com"
     val port = 587
 
-    val recipient = "" // TODO: Set
-
-    val sender = "" // TODO: Set
-    val password = "" // TODO: Set
+    // TODO: Set yours credentials
+    val recipient = ""
+    val sender = ""
+    val password = "" // help: https://support.google.com/mail/answer/185833, it must looks like: `xxxx xxxx xxxx xxxx`
 
     // Connect to the server
     val clientSocket = Socket(serverAddress, port)
